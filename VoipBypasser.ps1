@@ -61,7 +61,7 @@ Connect-VPN
 if ($vpn.ConnectionStatus -eq "Disconnected") { Connect-VPN }
 
 Start-Sleep 5 
-Invoke-WebRequest -Uri $routeREPO -OutFile $pwd"\route.bat"
+# Invoke-WebRequest -Uri $routeREPO -OutFile $pwd"\route.bat"
 Start-Process -FilePath $pwd"\route.bat" -Verb RunAs
 Clear-Host
 
