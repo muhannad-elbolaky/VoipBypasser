@@ -5,16 +5,17 @@ Write-host "(--> Getting things done... please wait!! <--)"
 Write-host ""
 Write-host ""
 
-# ? Global Variables
-$Settings = Get-Content -Path $pwd"\settings.json" -erroraction silentlycontinue | ConvertFrom-Json -erroraction silentlycontinue
 $SettingsREPO = "https://raw.githubusercontent.com/Majoramari/VoipBypasser/master/settings.json"
 $routeREPO = "https://raw.githubusercontent.com/Majoramari/VoipBypasser/master/route.bat"
-
-if (!$Settings) { 
-    Invoke-WebRequest -Uri $SettingsREPO -OutFile $env:TEMP"\settings.json"
+try {
+    $Settings = Get-Content -Path $pwd"\settings.json" -erroraction stop | ConvertFrom-Json 
 }
-$Settings = Get-Content -Path $env:TEMP"\settings.json" | ConvertFrom-Json
+catch {
+    Invoke-WebRequest -Uri $SettingsREPO -OutFile $pwd"\settings.json"
+    $Settings = Get-Content -Path $pwd"\settings.json" | ConvertFrom-Json
+}
 
+# ? Global Variables
 $vpnName = $Settings.vpnName
 $vpnServerAddress = $Settings.ServerAddress
 $vpnUserName = $Settings.Username
@@ -30,7 +31,7 @@ if (!$vpnServerAddress) {
     Write-host ""
     Write-host ""
     $vpnServerAddress = $Settings.ServerAddress
-    $Settings | ConvertTo-Json -depth 100 | Out-File $pwd"\settings.json"
+    $Settings | ConvertTo-Json -depth 100 | Out-File  $pwd"\settings.json"
 }
 
 function Connect-VPN {
@@ -59,10 +60,9 @@ Connect-VPN
 
 if ($vpn.ConnectionStatus -eq "Disconnected") { Connect-VPN }
 
-Invoke-WebRequest -Uri $routeREPO -OutFile $env:TEMP"\route.bat"
-Start-Process $env:TEMP"\route.bat" -NoNewWindow -Wait
-
 Start-Sleep 5 
+Invoke-WebRequest -Uri $routeREPO -OutFile $pwd"\route.bat"
+Start-Process -FilePath $pwd"\route.bat" -Verb RunAs
 Clear-Host
 
 Write-host ""
