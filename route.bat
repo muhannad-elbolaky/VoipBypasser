@@ -35,3 +35,5 @@ route add 54.0.0.0 mask 255.0.0.0 %ip_address%
 route add 216.0.0.0 mask 255.0.0.0 %ip_address%
 route add 74.0.0.0 mask 255.0.0.0 %ip_address%
 route add 63.0.0.0 mask 255.0.0.0 %ip_address%
+
+exit
