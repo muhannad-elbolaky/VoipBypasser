@@ -1,10 +1,9 @@
 ### ⚠️ No longer mentained and no longer working
 
-If you really need to keep using voice chat in games you can use this guy's video, the only problem you have to renew your account every 3 days so if you want you could host your own softether buy following this [guide](https://www.digitalocean.com/community/tutorials/how-to-setup-a-multi-protocol-vpn-server-using-softether)
+If you really need to keep using voice chat in games you can use this guy's video, the only problem you have to renew your account every 3 days so if you want you could host your own softether buy following this [guide]
 
-<figure class="video_container">
-  <iframe src="https://youtu.be/1ud0sV171XE" frameborder="0" allowfullscreen="true"> </iframe>
-</figure>
+- **[The Video](https://youtu.be/1ud0sV171XE)**
+- **[The self-hosted softether guide](https://youtu.be/1ud0sV171XE)**
 
 # VoipBypasser
 
